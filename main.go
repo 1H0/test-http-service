@@ -12,6 +12,8 @@ type Response struct {
 	Message       string    `json:"message"`
 	Timestamp     time.Time `json:"timestamp"`
 	UnixTimestamp int64     `json:"unix_timestamp"`
+	SourceIP      string    `json:"src_ip"`
+	Path          string    `json:"path"`
 	Host          string    `json:"host"`
 }
 
@@ -35,6 +37,8 @@ func main() {
 			Message:       "Hi",
 			Timestamp:     time.Now(),
 			UnixTimestamp: time.Now().Unix(),
+			SourceIP:      r.RemoteAddr,
+			Path:          r.RequestURI,
 			Host:          hostname,
 		})
 
